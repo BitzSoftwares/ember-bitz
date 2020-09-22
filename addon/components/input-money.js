@@ -11,12 +11,6 @@ export default Component.extend({
   readonly: false,
   changingMasked: false,
 
-  setValueUnmasked() {
-    const value = this.$('input').inputmask('unmaskedvalue');
-
-    set(this, 'value', Number(value.replace(',', '.') || 0));
-  },
-
   valueObserver: observer('value', function () {
     if (get(this, 'changingMasked')) {
       set(this, 'changingMasked', false);
