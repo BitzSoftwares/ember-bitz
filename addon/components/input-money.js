@@ -20,6 +20,9 @@ export default Component.extend({
   didReceiveAttrs() {
       removeObserver(this, 'valueInput', null, 'setValueUnmasked');
 
+      console.log(':)');
+      console.log(get(this, 'value'));
+
       set(this, 'valueInput', get(this, 'value') || 0);
 
       addObserver(this, 'valueInput', null, 'setValueUnmasked');
