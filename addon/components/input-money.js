@@ -1,8 +1,7 @@
 import Component from '@ember/component';
 import layout from '../templates/components/input-money';
 
-import { get, set } from '@ember/object';
-import { addObserver, removeObserver } from '@ember/object/observers';
+import { get, set, observer } from '@ember/object';
 
 export default Component.extend({
   layout,
@@ -10,36 +9,48 @@ export default Component.extend({
   value: 0,
   valueInput: 0,
   readonly: false,
+  changingMasked: false,
 
   setValueUnmasked() {
-      const value = this.$('input').inputmask('unmaskedvalue');
+    const value = this.$('input').inputmask('unmaskedvalue');
 
-      set(this, 'value', Number(value.replace(',', '.') || 0));
+    set(this, 'value', Number(value.replace(',', '.') || 0));
   },
 
-  didReceiveAttrs() {
-      removeObserver(this, 'valueInput', null, 'setValueUnmasked');
+  valueObserver: observer('value', function () {
+    if (get(this, 'changingMasked')) {
+      set(this, 'changingMasked', false);
+      return;
+    }
 
-      set(this, 'valueInput', get(this, 'value') || 0);
-
-      addObserver(this, 'valueInput', null, 'setValueUnmasked');
-  },
+    this.$('input').inputmask('setvalue', Number(get(this, 'value')) || 0);
+  }),
 
   didInsertElement() {
-      this.$('input').inputmask({
-          placeholder: '0,00',
-          alias: 'numeric',
-          autoGroup: true,
-          prefix: 'R$ ',
-          digits: '2',
-          groupSeparator: '.',
-          radixPoint: ',',
-          digitsOptional: false,
-          showMaskOnHover: false,
-      });
+    this.$('input').inputmask({
+      placeholder: '0,00',
+      alias: 'numeric',
+      autoGroup: true,
+      prefix: 'R$ ',
+      digits: '2',
+      groupSeparator: '.',
+      radixPoint: ',',
+      digitsOptional: false,
+      showMaskOnHover: false,
+    });
+
+    this.$('input').val(get(this, 'value') || 0);
+
+    this.$('input').on('input', () => {
+      set(this, 'changingMasked', true);
+
+      const value = this.$('input').inputmask('unmaskedvalue');
+      set(this, 'value', Number(value.replace(',', '.') || 0));
+    });
   },
 
   willDestroyElement() {
-      this.$('input').inputmask('remove');
+    this.$('input').inputmask('remove');
   }
+
 });

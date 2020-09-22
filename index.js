@@ -15,9 +15,7 @@ module.exports = {
 
   included(app) {
     this._super.included.apply(this, arguments);
-    this.ui.writeLine('Including external files!');
 
     app.import('node_modules/inputmask/dist/jquery.inputmask.min.js');
-    console.log(':)');
   }
 };
