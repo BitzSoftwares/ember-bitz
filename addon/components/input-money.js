@@ -33,7 +33,7 @@ export default Component.extend({
       showMaskOnHover: false,
     });
 
-    this.$('input').val(get(this, 'value') || 0);
+    this.$('input').inputmask('setvalue', get(this, 'value') || 0);
 
     this.$('input').on('input', () => {
       set(this, 'changingMasked', true);
@@ -44,7 +44,7 @@ export default Component.extend({
   },
 
   willDestroyElement() {
-    this.$('input').inputmask('remove');
+    this.$('input').inputmask('remove').off('input');
   }
 
 });
