@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import layout from '../templates/components/input-money';
+import layout from '../templates/components/bitz-input-money';
 
 import { get, set, observer } from '@ember/object';
 

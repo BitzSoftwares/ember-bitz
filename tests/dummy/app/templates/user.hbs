@@ -1,8 +1,12 @@
 {{outlet}}
 
-<h1>User {{model.dinheiro}}</h1>
+<h1>User</h1>
 
-{{!-- <InputMoney /> --}}
-{{!-- <InputMoney /> --}}
-{{input-money value=model.dinheiro}}
+<h3>Input Money</h3>
+{{bitz-input-money value=model.dinheiro}}
 {{input value=model.dinheiro}}
+<div>Data: <strong>{{model.dinheiro}}</strong></div>
+
+<h3>Datepicker</h3>
+{{bitz-input-date value=model.dataChegada}}
+<div>Data: <strong>{{model.dataChegada}}</strong></div>

@@ -5,7 +5,11 @@ module.exports = {
   normalizeEntityName() { },
 
   afterInstall() {
-    return this.addPackageToProject('inputmask');
+    return this.addPackagesToProject([
+      { name: 'inputmask' },
+      { name: 'moment' },
+      { name: 'bootstrap-datepicker' },
+    ]);
   }
 
 };
