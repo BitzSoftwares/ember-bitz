@@ -1,12 +1,26 @@
 {{outlet}}
 
-<h1>User</h1>
+<h1>Componentes</h1>
 
-<h3>Input Money</h3>
+<label for="">Input Money</label>
 {{bitz-input-money value=model.dinheiro}}
-{{input value=model.dinheiro}}
+{{input value=model.dinheiro class="form-control"}}
 <div>Data: <strong>{{model.dinheiro}}</strong></div>
 
-<h3>Datepicker</h3>
+<hr>
+
+<label>Datepicker</label>
 {{bitz-input-date value=model.dataChegada}}
 <div>Data: <strong>{{model.dataChegada}}</strong></div>
+
+<hr>
+
+<label>Datepicker</label>
+{{bitz-input-date value=model.dataChegada}}
+<div>Data: <strong>{{model.dataChegada}}</strong></div>
+
+<hr>
+
+<label>Datepicker Range</label>
+{{bitz-input-date-range start=model.dataInicial end=model.dataFinal}}
+<div>Data: <strong>{{model.dataInicial}}</strong> to <strong>{{model.dataFinal}}</strong></div>

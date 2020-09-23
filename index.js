@@ -21,10 +21,10 @@ module.exports = {
 
     // moment
     app.import('node_modules/moment/moment.js');
-    // app.import('node_modules/moment/dist/locale/pt-br.js');
 
     // datepicker
     app.import('node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');
     app.import('node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');
+    app.import('node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js');
   }
 };

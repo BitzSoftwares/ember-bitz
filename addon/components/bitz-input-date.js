@@ -15,10 +15,11 @@ export default Component.extend({
     set(this, 'value', moment(get(this, 'valueInput'), 'DD/MM/YYYY').toDate());
   },
 
-  didReceiveAttrs() {
+  didRender() {
     removeObserver(this, 'valueInput', null, 'setValue');
 
     set(this, 'valueInput', moment(get(this, 'value')).format('DD/MM/YYYY'));
+    this.$('input').datepicker('update', get(this, 'value'));
 
     addObserver(this, 'valueInput', null, 'setValue');
   },
