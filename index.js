@@ -17,7 +17,7 @@ module.exports = {
     this._super.included.apply(this, arguments);
 
     // inputmask
-    app.import('node_modules/inputmask/dist/jquery.inputmask.min.js');
+    app.import('node_modules/inputmask/dist/jquery.inputmask.bundle.js');
 
     // moment
     app.import('node_modules/moment/moment.js');
