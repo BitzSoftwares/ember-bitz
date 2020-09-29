@@ -7,7 +7,8 @@ export default Route.extend({
             dinheiro: 10.58,
             dataChegada: new Date(),
             dataInicial: new Date(),
-            dataFinal: new Date()
+            dataFinal: new Date(),
+            quantidade: 5,
         };
     }
 
