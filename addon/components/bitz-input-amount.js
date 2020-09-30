@@ -30,6 +30,10 @@ export default Component.extend({
     });
   },
 
+  didUpdateAttrs() {
+    this.element.querySelector('input').value = get(this, 'value');
+  },
+
   willDestroyElement() {
     const inputEle = this.element.querySelector('input');
     inputEle.removeEventListener('input');
