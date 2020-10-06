@@ -11,23 +11,26 @@ export default Component.extend({
   max: 100,
   value: 0,
 
+  onInputEvent() {
+    const inputEle = this.element.querySelector('input');
+    const value = Number(inputEle.value);
+
+    if (isNaN(value) || value < this.min || value > this.max) {
+      inputEle.value = get(this, 'value');
+      return;
+    }
+
+    if (value === 0) inputEle.value = 0;
+
+    set(this, 'value', value);
+  },
+
   didInsertElement() {
     const inputEle = this.element.querySelector('input');
 
     inputEle.value = get(this, 'value');
 
-    inputEle.addEventListener('input', () => {
-      const value = Number(inputEle.value);
-
-      if (isNaN(value) || value < this.min || value > this.max) {
-        inputEle.value = get(this, 'value');
-        return;
-      }
-
-      if (value === 0) inputEle.value = 0;
-
-      set(this, 'value', value);
-    });
+    inputEle.addEventListener('input', this.onInputEvent);
   },
 
   didUpdateAttrs() {
@@ -36,7 +39,7 @@ export default Component.extend({
 
   willDestroyElement() {
     const inputEle = this.element.querySelector('input');
-    inputEle.removeEventListener('input');
+    inputEle.removeEventListener('input', this.onInputEvent);
   },
 
   actions: {
