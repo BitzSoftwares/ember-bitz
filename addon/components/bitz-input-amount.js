@@ -30,7 +30,7 @@ export default Component.extend({
 
     inputEle.value = get(this, 'value');
 
-    inputEle.addEventListener('input', this.onInputEvent);
+    inputEle.addEventListener('input', () => this.onInputEvent());
   },
 
   didUpdateAttrs() {
@@ -39,7 +39,7 @@ export default Component.extend({
 
   willDestroyElement() {
     const inputEle = this.element.querySelector('input');
-    inputEle.removeEventListener('input', this.onInputEvent);
+    inputEle.removeEventListener('input', () => this.onInputEvent());
   },
 
   actions: {
