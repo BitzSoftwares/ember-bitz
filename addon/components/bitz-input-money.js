@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import layout from '../templates/components/bitz-input-money';
 
-import { get, set, observer } from '@ember/object';
+import { get, set, computed, observer } from '@ember/object';
 
 export default Component.extend({
   layout,
@@ -11,13 +11,17 @@ export default Component.extend({
   readonly: false,
   changingMasked: false,
 
+  roundedValue: computed('value', function () {
+    return Math.round((Number(get(this, 'value')) || 0) * 100) / 100;
+  }),
+
   valueObserver: observer('value', function () {
     if (get(this, 'changingMasked')) {
       set(this, 'changingMasked', false);
       return;
     }
 
-    this.$('input').inputmask('setvalue', Number(get(this, 'value') || 0).toFixed(2));
+    this.$('input').inputmask('setvalue', get(this, 'roundedValue'));
   }),
 
   didInsertElement() {
@@ -33,7 +37,7 @@ export default Component.extend({
       showMaskOnHover: false,
     });
 
-    this.$('input').inputmask('setvalue', Number(get(this, 'value') || 0).toFixed(2));
+    this.$('input').inputmask('setvalue', get(this, 'roundedValue'));
 
     this.$('input').on('input', () => {
       set(this, 'changingMasked', true);
