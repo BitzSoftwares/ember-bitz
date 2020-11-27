@@ -4,7 +4,7 @@ export default Route.extend({
 
     model() {
         return {
-            dinheiro: 10.58,
+            dinheiro: 23.375,
             dataChegada: new Date(),
             dataInicial: new Date(),
             dataFinal: new Date(),

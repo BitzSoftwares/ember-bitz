@@ -17,7 +17,7 @@ export default Component.extend({
       return;
     }
 
-    this.$('input').inputmask('setvalue', Number(get(this, 'value')) || 0);
+    this.$('input').inputmask('setvalue', Number(get(this, 'value') || 0).toFixed(2));
   }),
 
   didInsertElement() {
@@ -33,7 +33,7 @@ export default Component.extend({
       showMaskOnHover: false,
     });
 
-    this.$('input').inputmask('setvalue', get(this, 'value') || 0);
+    this.$('input').inputmask('setvalue', Number(get(this, 'value') || 0).toFixed(2));
 
     this.$('input').on('input', () => {
       set(this, 'changingMasked', true);
