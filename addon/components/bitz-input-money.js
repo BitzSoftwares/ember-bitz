@@ -12,7 +12,7 @@ export default Component.extend({
   changingMasked: false,
 
   classComputed: computed('class', function () {
-    return 'form-control ' + (get(this, 'class')  || '');
+    return 'form-control ' + (get(this, 'class') || '');
   }),
 
   roundedValue: computed('value', function () {
@@ -39,6 +39,7 @@ export default Component.extend({
       radixPoint: ',',
       digitsOptional: false,
       showMaskOnHover: false,
+      clearMaskOnLostFocus: false,
     });
 
     this.$('input').inputmask('setvalue', get(this, 'roundedValue'));
