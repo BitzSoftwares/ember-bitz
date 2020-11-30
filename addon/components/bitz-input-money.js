@@ -11,6 +11,10 @@ export default Component.extend({
   readonly: false,
   changingMasked: false,
 
+  classComputed: computed('class', function () {
+    return 'form-control ' + get(this, 'class');
+  }),
+
   roundedValue: computed('value', function () {
     return Math.round((Number(get(this, 'value')) || 0) * 100) / 100;
   }),
