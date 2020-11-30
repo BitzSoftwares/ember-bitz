@@ -12,7 +12,7 @@ export default Component.extend({
   changingMasked: false,
 
   classComputed: computed('class', function () {
-    return 'form-control ' + get(this, 'class');
+    return 'form-control ' + (get(this, 'class')  || '');
   }),
 
   roundedValue: computed('value', function () {
