@@ -1,33 +1,83 @@
 import Component from '@ember/component';
 import layout from '../templates/components/bitz-input-date-range';
 
-import { get, set } from '@ember/object';
+import { get, set, observer } from '@ember/object';
 
 export default Component.extend({
   layout,
 
+  drops: 'auto',
+  timePicker: false,
+  separator: ' até ',
   start: new Date(),
-  valueStart: '',
   end: new Date(),
-  valueEnd: '',
   readonly: false,
-  toStr: 'até',
+
+  isUpdating: false,
+
+  valueObserver: observer('start', 'end', function () {
+    // feito esse cara para atualizar apenas quando o end também é alterado
+    if (get(this, 'isUpdating')) return;
+
+    this.$('input').data('daterangepicker').setStartDate(get(this, 'start'));
+    this.$('input').data('daterangepicker').setEndDate(get(this, 'end'));
+  }),
 
   didInsertElement() {
-    const $inputGroup = this.$('.input-daterange');
+    if (get(this, 'readonly')) {
+      const start = moment(get(this, 'start')).format('DD/MM/YYYY');
+      const end = moment(get(this, 'end')).format('DD/MM/YYYY');
 
-    if (!get(this, 'readonly')) {
-      $inputGroup.datepicker({
-        language: 'pt-BR',
-        todayBtn: 'linked',
-        todayHighlight: true,
-        format: 'dd/mm/yyyy'
-      });
+      this.$('input').val(start + ' - ' + end);
+      return;
     }
 
-    $inputGroup.find('input').inputmask('99/99/9999');
-
-    set(this, 'valueStart', moment(get(this, 'start')).format('DD/MM/YYYY'));
-    set(this, 'valueEnd', moment(moment(get(this, 'end')).add(1, 'day').toDate()).format('DD/MM/YYYY'));
+    this.$('input').daterangepicker({
+      autoApply: true,
+      drops: get(this, 'drops'),
+      startDate: get(this, 'start'),
+      endDate: get(this, 'end'),
+      timePicker: get(this, 'timePicker'),
+      timePicker24Hour: true,
+      locale: {
+        format: get(this, 'timePicker') ? 'DD/MM/YYYY HH:mm' : 'DD/MM/YYYY',
+        separator: get(this, 'separator'),
+        applyLabel: 'Aplicar',
+        cancelLabel: 'Cancelar',
+        fromLabel: 'De',
+        toLabel: 'Para',
+        customRangeLabel: 'Customizado',
+        weekLabel: 'W',
+        daysOfWeek: [
+          'Dom',
+          'Seg',
+          'Ter',
+          'Qua',
+          'Qui',
+          'Sex',
+          'Sab'
+        ],
+        monthNames: [
+          'Janeiro',
+          'Fevereiro',
+          'Março',
+          'Abril',
+          'Maio',
+          'Junho',
+          'Julho',
+          'Agosto',
+          'Setembro',
+          'Outubro',
+          'Novembro',
+          'Dezembro'
+        ],
+        firstDay: 1
+      }
+    }).on('apply.daterangepicker', (event, dateObject) => {
+      set(this, 'isUpdating', true);
+      set(this, 'start', dateObject.startDate.toDate());
+      set(this, 'isUpdating', false);
+      set(this, 'end', dateObject.endDate.toDate());
+    });
   }
 });

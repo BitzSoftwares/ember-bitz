@@ -26,5 +26,9 @@ module.exports = {
     app.import('node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css');
     app.import('node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');
     app.import('node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js');
+
+    // daterangepicker
+    app.import('node_modules/daterangepicker/daterangepicker.js');
+    app.import('node_modules/daterangepicker/daterangepicker.css');
   }
 };

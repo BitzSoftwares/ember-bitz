@@ -23,6 +23,7 @@
   "dependencies": {
     "@ember/jquery": "^1.1.0",
     "bootstrap-datepicker": "^1.9.0",
+    "daterangepicker": "^3.1.0",
     "ember-cli-babel": "^7.1.2",
     "ember-cli-htmlbars": "^3.0.0",
     "inputmask": "^3.3.7",
