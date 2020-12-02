@@ -3,7 +3,7 @@
 <h1>Componentes</h1>
 
 <label>Input Money</label>
-{{bitz-input-money value=model.dinheiro class="text-red text-bold"}}
+{{bitz-input-money value=model.dinheiro}}
 {{input value=model.dinheiro class="form-control"}}
 <div>Data: <strong>{{model.dinheiro}}</strong></div>
 
@@ -27,6 +27,13 @@
 
 <hr>
 
-<label>Input Quantity</label>
+<label>Quantity Input</label>
 {{bitz-input-amount value=model.quantidade}}
 <div>Quantidade: <strong>{{model.quantidade}}</strong></div>
+
+<hr>
+
+<label>Grid</label>
+{{bitz-grid}}
+
+<hr>

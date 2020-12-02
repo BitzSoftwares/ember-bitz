@@ -16,7 +16,8 @@ export default Component.extend({
   isUpdating: false,
 
   valueObserver: observer('start', 'end', function () {
-    // feito esse cara para atualizar apenas quando o end também é alterado
+    // feito isso para que o evento do daterangepicker 
+    // não execute na hora que alterar o start apenas
     if (get(this, 'isUpdating')) return;
 
     this.$('input').data('daterangepicker').setStartDate(get(this, 'start'));
@@ -79,5 +80,10 @@ export default Component.extend({
       set(this, 'isUpdating', false);
       set(this, 'end', dateObject.endDate.toDate());
     });
+  },
+
+  willDestroyElement() {
+    this.$('input').data('daterangepicker').remove();
   }
+
 });

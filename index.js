@@ -30,5 +30,9 @@ module.exports = {
     // daterangepicker
     app.import('node_modules/daterangepicker/daterangepicker.js');
     app.import('node_modules/daterangepicker/daterangepicker.css');
+
+    // grid
+    app.import('node_modules/gridjs/dist/gridjs.production.min.js');
+    app.import('node_modules/gridjs/dist/theme/mermaid.min.css');
   }
 };

@@ -10,6 +10,7 @@ module.exports = {
       { name: 'moment' },
       { name: 'daterangepicker' },
       { name: 'bootstrap-datepicker' },
+      { name: 'gridjs' },
     ]);
   }
 
