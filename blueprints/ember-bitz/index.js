@@ -11,6 +11,7 @@ module.exports = {
       { name: 'daterangepicker' },
       { name: 'bootstrap-datepicker' },
       { name: 'gridjs' },
+      { name: 'nouislider' },
     ]);
   }
 

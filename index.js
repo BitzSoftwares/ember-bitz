@@ -34,5 +34,9 @@ module.exports = {
     // grid
     app.import('node_modules/gridjs/dist/gridjs.production.min.js');
     app.import('node_modules/gridjs/dist/theme/mermaid.min.css');
+
+    // nouislider
+    app.import('node_modules/nouislider/distribute/nouislider.min.js');
+    app.import('node_modules/nouislider/distribute/nouislider.min.css');
   }
 };
