@@ -9,6 +9,7 @@ export default Route.extend({
             dataInicial: new Date(),
             dataFinal: new Date(),
             quantidade: 5,
+            range: 50,
         };
     }
 
