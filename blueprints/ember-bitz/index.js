@@ -8,8 +8,8 @@ module.exports = {
     return this.addPackagesToProject([
       { name: 'inputmask' },
       { name: 'moment' },
-      { name: 'daterangepicker' },
       { name: 'bootstrap-datepicker' },
+      { name: 'daterangepicker' },
       { name: 'gridjs' },
       { name: 'nouislider' },
     ]);
